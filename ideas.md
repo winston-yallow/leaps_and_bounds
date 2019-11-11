@@ -4,7 +4,7 @@
 - No gravity
 - Floating objects
 - Player needs to reach target
-- Gaps between object increase over time
+- Gaps between objects increase over time
 - Player has a harpoon like device to cast rope to objects
 - When shooting rope the player will move to the target object
 - Rope has a range
