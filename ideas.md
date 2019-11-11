@@ -11,3 +11,10 @@
 - Range of rope can be extended with collectable items
 - Maybe the objects are all cubes?
 - Player orientation could depend on the plane they are standing on
+
+# Things to implement
+
+- objects that will move around
+- player
+  - harpoone thing
+- collectables
