@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://player/cursor.png" type="Texture" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 0.5
@@ -18,3 +19,19 @@ transform = Transform( 1, 0, 0, 0, 0.98214, 0.188153, 0, -0.188153, 0.98214, 0, 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = null
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Cursor" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
