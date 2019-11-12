@@ -54,7 +54,9 @@ func _input(event: InputEvent) -> void:
                 print("No movement target found")
 
 func _physics_process(delta: float) -> void:
+    
     if current_state == STATE.WAITING:
+        
         var space_state := get_world().direct_space_state
         var direction := -cam.global_transform.basis.z.normalized()
         # Start 0.05 units away from the clipped camera position to prevent
@@ -67,10 +69,13 @@ func _physics_process(delta: float) -> void:
             current_ray_result = result
         else:
             current_ray_result = null
+        
         global_transform.origin = (
             movement_target.global_transform.origin + movement_rel_offset
         )
+    
     elif current_state == STATE.MOVING:
+        
         movement_progress = min(
             movement_progress + (delta * movement_speed), 1.0
         )
