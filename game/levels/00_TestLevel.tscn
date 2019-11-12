@@ -6,15 +6,168 @@
 [node name="00_TestLevel" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
-[node name="FloatingCube" parent="." instance=ExtResource( 1 )]
+[node name="Cubes" type="Spatial" parent="."]
 
-[node name="FloatingCube2" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0 )
+[node name="FloatingCube7" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -2 )
 
-[node name="FloatingCube3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
+[node name="FloatingCube6" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2 )
 
-[node name="FloatingCube4" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0 )
+[node name="FloatingCube5" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -2 )
+
+[node name="FloatingCube15" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 0 )
+
+[node name="FloatingCube14" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+
+[node name="FloatingCube13" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 0 )
+
+[node name="FloatingCube11" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 2 )
+
+[node name="FloatingCube10" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2 )
+
+[node name="FloatingCube9" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 2 )
+
+[node name="FloatingCube8" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, -2 )
+
+[node name="FloatingCube12" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -2 )
+
+[node name="FloatingCube16" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4, -2 )
+
+[node name="FloatingCube17" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 0 )
+
+[node name="FloatingCube18" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
+
+[node name="FloatingCube19" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4, 0 )
+
+[node name="FloatingCube20" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 2 )
+
+[node name="FloatingCube21" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 2 )
+
+[node name="FloatingCube22" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4, 2 )
+
+[node name="FloatingCube23" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, -2, -2 )
+
+[node name="FloatingCube24" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, 0, -2 )
+
+[node name="FloatingCube25" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, 2, -2 )
+
+[node name="FloatingCube26" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, -2, 0 )
+
+[node name="FloatingCube27" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="FloatingCube28" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, 2, 0 )
+
+[node name="FloatingCube29" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, -2, 2 )
+
+[node name="FloatingCube30" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, 0, 2 )
+
+[node name="FloatingCube31" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, 2, 2 )
+
+[node name="FloatingCube32" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, -2, -2 )
+
+[node name="FloatingCube33" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 0, -2 )
+
+[node name="FloatingCube34" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 2, -2 )
+
+[node name="FloatingCube35" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, -2, 0 )
+
+[node name="FloatingCube36" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="FloatingCube37" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 2, 0 )
+
+[node name="FloatingCube38" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, -2, 2 )
+
+[node name="FloatingCube39" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 0, 2 )
+
+[node name="FloatingCube40" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 2, 2 )
+
+[node name="FloatingCube41" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 2, -2, -4 )
+
+[node name="FloatingCube42" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 2, 0, -4 )
+
+[node name="FloatingCube43" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 2, 2, -4 )
+
+[node name="FloatingCube44" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 1.19209e-07, -2, -4 )
+
+[node name="FloatingCube45" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 1.19209e-07, 0, -4 )
+
+[node name="FloatingCube46" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 1.19209e-07, 2, -4 )
+
+[node name="FloatingCube47" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, -2, -4 )
+
+[node name="FloatingCube48" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, 0, -4 )
+
+[node name="FloatingCube49" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, 2, -4 )
+
+[node name="FloatingCube50" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 2, -2, 4 )
+
+[node name="FloatingCube51" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 2, 0, 4 )
+
+[node name="FloatingCube52" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 2, 2, 4 )
+
+[node name="FloatingCube53" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -1.78814e-07, -2, 4 )
+
+[node name="FloatingCube54" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -1.78814e-07, 0, 4 )
+
+[node name="FloatingCube55" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -1.78814e-07, 2, 4 )
+
+[node name="FloatingCube56" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, -2, 4 )
+
+[node name="FloatingCube57" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, 0, 4 )
+
+[node name="FloatingCube58" parent="Cubes" instance=ExtResource( 1 )]
+transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, 2, 4 )
