@@ -11,12 +11,11 @@ var distance_from_objects := 0.5
 var speed := 15.0
 
 var current_state: int = STATE.WAITING
-var current_ray_result = null
+var current_ray_target = null
 
 var movement_progress := 0.0
-var movement_starting_transform: Transform
-onready var movement_target: Spatial = self
-var movement_rel_offset := Vector3()
+var movement_from: Transform
+onready var movement_target := DynamicTransform.new(global_transform, self)
 var movement_speed: float
 
 onready var cam_pivot := $CameraPivot
@@ -36,18 +35,13 @@ func _input(event: InputEvent) -> void:
                 max_vertical_rotation
             )
         elif event.is_action_pressed("start_move"):
-            if current_ray_result != null:
+            if current_ray_target != null:
                 current_state = STATE.MOVING
                 movement_progress = 0.0
-                movement_starting_transform = global_transform
-                movement_target = current_ray_result.collider
-                var collider_center := movement_target.global_transform.origin
-                var position := current_ray_result.position as Vector3
-                var normal := current_ray_result.normal as Vector3
-                var target_pos := position + (normal * distance_from_objects)
-                movement_rel_offset = target_pos - collider_center
+                movement_from = global_transform
+                movement_target = current_ray_target
                 var distance := global_transform.origin.distance_to(
-                    collider_center + movement_rel_offset
+                    movement_target.get_global_transform().origin
                 )
                 movement_speed = (1 / distance) * speed
             else:
@@ -65,25 +59,26 @@ func _physics_process(delta: float) -> void:
         var from := cam.global_transform.origin + (direction * clip_offset)
         var to := from + (direction * ray_length)
         var result := space_state.intersect_ray(from, to)
-        if result and not result.collider == movement_target:
-            current_ray_result = result
+        if result and result.collider != movement_target.anchor:
+            current_ray_target = DynamicTransform.new(
+                Transform(
+                    global_transform.basis,
+                    result.position + (result.normal * distance_from_objects)
+                ),
+                result.collider
+            )
         else:
-            current_ray_result = null
+            current_ray_target = null
         
-        global_transform.origin = (
-            movement_target.global_transform.origin + movement_rel_offset
-        )
+        global_transform.origin = movement_target.get_global_transform().origin
     
     elif current_state == STATE.MOVING:
         
         movement_progress = min(
             movement_progress + (delta * movement_speed), 1.0
         )
-        var target := Transform(
-            movement_starting_transform.basis,
-            movement_target.global_transform.origin + movement_rel_offset
-        )
-        global_transform = movement_starting_transform.interpolate_with(
+        var target := movement_target.get_global_transform()
+        global_transform = movement_from.interpolate_with(
             target,
             movement_progress
         )
