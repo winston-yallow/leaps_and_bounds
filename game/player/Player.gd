@@ -23,8 +23,14 @@ onready var cam: Camera = $CameraPivot/ClippedCamera
 
 onready var target_preview: Spatial = $TargetPreview
 
+onready var stats: Label = $CanvasLayer/InfoOverlay/Stats
+
 func _ready() -> void:
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    stats.text = 'speed: {speed}\njump_distance: {ray_length}'.format({
+        'speed': speed,
+        'ray_length': ray_length
+    })
 
 func _input(event: InputEvent) -> void:
     if current_state == STATE.WAITING:
