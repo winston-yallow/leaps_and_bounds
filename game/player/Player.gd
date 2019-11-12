@@ -56,10 +56,13 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
     if current_state == STATE.WAITING:
         var space_state := get_world().direct_space_state
-        var from := cam.global_transform.origin
-        var to := from - (cam.global_transform.basis.z.normalized() * ray_length)
+        var direction := -cam.global_transform.basis.z.normalized()
+        # Start 0.1 units away from the camera to prevent colliding with
+        # objects behind camera:
+        var from := cam.global_transform.origin + (direction * 0.1)
+        var to := from + (direction * ray_length)
         var result := space_state.intersect_ray(from, to)
-        if result and result.collider is FloatingBody:
+        if result and not result.collider == movement_target:
             current_ray_result = result
         else:
             current_ray_result = null
