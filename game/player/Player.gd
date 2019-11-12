@@ -8,6 +8,8 @@ var max_vertical_rotation := +75.0
 var ray_length := 100.0
 var distance_from_objects := 0.5
 
+var speed := 15.0
+
 var current_state: int = STATE.WAITING
 var current_ray_result = null
 
@@ -15,6 +17,7 @@ var movement_progress := 0.0
 var movement_starting_transform: Transform
 var movement_target: FloatingBody
 var movement_rel_offset: Vector3
+var movement_speed: float
 
 onready var cam_pivot := $CameraPivot
 onready var cam: Camera = $CameraPivot/ClippedCamera
@@ -43,6 +46,10 @@ func _input(event: InputEvent) -> void:
                 var normal := current_ray_result.normal as Vector3
                 var target_pos := position + (normal * distance_from_objects)
                 movement_rel_offset = target_pos - collider_center
+                var distance := global_transform.origin.distance_to(
+                    collider_center + movement_rel_offset
+                )
+                movement_speed = (1 / distance) * speed
             else:
                 print("No movement target found")
 
@@ -57,7 +64,9 @@ func _physics_process(delta: float) -> void:
         else:
             current_ray_result = null
     elif current_state == STATE.MOVING:
-        movement_progress = min(movement_progress + delta, 1.0)
+        movement_progress = min(
+            movement_progress + (delta * movement_speed), 1.0
+        )
         var target := Transform(
             movement_starting_transform.basis,
             movement_target.global_transform.origin + movement_rel_offset
