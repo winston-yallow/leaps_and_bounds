@@ -21,6 +21,8 @@ var movement_speed: float
 onready var cam_pivot := $CameraPivot
 onready var cam: Camera = $CameraPivot/ClippedCamera
 
+onready var target_preview: Spatial = $TargetPreview
+
 func _ready() -> void:
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -44,6 +46,7 @@ func _input(event: InputEvent) -> void:
                     movement_target.get_global_transform().origin
                 )
                 movement_speed = (1 / distance) * speed
+                target_preview.visible = false
             else:
                 print("No movement target found")
 
@@ -67,8 +70,11 @@ func _physics_process(delta: float) -> void:
                 ),
                 result.collider
             )
+            target_preview.global_transform = current_ray_target.get_global_transform()
+            target_preview.visible = true
         else:
             current_ray_target = null
+            target_preview.visible = false
         
         global_transform.origin = movement_target.get_global_transform().origin
     
