@@ -14,8 +14,9 @@ distance limits the player can collect items.
 
 This project is licensed under the MIT License. For details please see the [license file](LICENSE).
 
-## Tools and Resources
+## Tools, Resources and Links
 
 Helpful and awesome tools I used to create this game.
 
 - [Godot](https://godotengine.org/) (Game Engine)
+- [GitHub Game Off 2019](https://itch.io/jam/game-off-2019) (The official [itch.io](https://itch.io/) page for this jam)
