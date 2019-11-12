@@ -57,9 +57,10 @@ func _physics_process(delta: float) -> void:
     if current_state == STATE.WAITING:
         var space_state := get_world().direct_space_state
         var direction := -cam.global_transform.basis.z.normalized()
-        # Start 0.1 units away from the camera to prevent colliding with
-        # objects behind camera:
-        var from := cam.global_transform.origin + (direction * 0.1)
+        # Start 0.05 units away from the clipped camera position to prevent
+        # colliding with objects behind the camera:
+        var clip_offset := (cam.get_clip_offset() as float) + 0.05
+        var from := cam.global_transform.origin + (direction * clip_offset)
         var to := from + (direction * ray_length)
         var result := space_state.intersect_ray(from, to)
         if result and not result.collider == movement_target:
