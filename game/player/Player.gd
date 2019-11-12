@@ -15,8 +15,8 @@ var current_ray_result = null
 
 var movement_progress := 0.0
 var movement_starting_transform: Transform
-var movement_target: FloatingBody
-var movement_rel_offset: Vector3
+onready var movement_target: Spatial = self
+var movement_rel_offset := Vector3()
 var movement_speed: float
 
 onready var cam_pivot := $CameraPivot
@@ -63,6 +63,9 @@ func _physics_process(delta: float) -> void:
             current_ray_result = result
         else:
             current_ray_result = null
+        global_transform.origin = (
+            movement_target.global_transform.origin + movement_rel_offset
+        )
     elif current_state == STATE.MOVING:
         movement_progress = min(
             movement_progress + (delta * movement_speed), 1.0
