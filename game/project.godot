@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "FloatingBody",
 "language": "GDScript",
 "path": "res://floating_objects/FloatingBody.gd"
+}, {
+"base": "Area",
+"class": "Powerup",
+"language": "GDScript",
+"path": "res://powerups/Powerup.gd"
 } ]
 _global_script_class_icons={
 "DynamicTransform": "",
-"FloatingBody": ""
+"FloatingBody": "",
+"Powerup": ""
 }
 
 [application]
