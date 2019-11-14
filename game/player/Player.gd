@@ -22,7 +22,7 @@ onready var cam_pivot := $CameraPivot
 onready var cam: Camera = $CameraPivot/ClippedCamera
 
 onready var target_preview: Spatial = $TargetPreview
-
+onready var detector: Area = $Detector
 onready var stats: Label = $CanvasLayer/InfoOverlay/Stats
 
 func _ready() -> void:
@@ -31,6 +31,15 @@ func _ready() -> void:
         'speed': speed,
         'ray_length': ray_length
     })
+    detector.connect("area_entered", self, "on_detection")
+
+func on_detection(other: Node):
+    if other is Powerup:
+        match other.type:
+            Powerup.TYPES.DISTANCE:
+                ray_length += other.amount
+            Powerup.TYPES.SPEED:
+                speed += other.amount
 
 func _input(event: InputEvent) -> void:
     if current_state == STATE.WAITING:
