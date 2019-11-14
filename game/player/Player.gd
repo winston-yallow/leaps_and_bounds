@@ -33,7 +33,7 @@ func _ready() -> void:
     })
     detector.connect("area_entered", self, "on_detection")
 
-func on_detection(other: Node):
+func on_detection(other: Node) -> void:
     if other is Powerup:
         match other.type:
             Powerup.TYPES.DISTANCE:
