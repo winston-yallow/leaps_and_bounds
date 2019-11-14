@@ -45,6 +45,7 @@ func on_detection(other: Node) -> void:
                 speed += other.amount
             _: # Immediately return without stats update when no match was found
                 return
+        other.consume()
         update_stats_label()
 
 func _input(event: InputEvent) -> void:
