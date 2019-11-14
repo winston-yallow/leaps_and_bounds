@@ -27,11 +27,14 @@ onready var stats: Label = $CanvasLayer/InfoOverlay/Stats
 
 func _ready() -> void:
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    update_stats_label()
+    detector.connect("area_entered", self, "on_detection")
+
+func update_stats_label() -> void:
     stats.text = 'speed: {speed}\njump_distance: {ray_length}'.format({
         'speed': speed,
         'ray_length': ray_length
     })
-    detector.connect("area_entered", self, "on_detection")
 
 func on_detection(other: Node) -> void:
     if other is Powerup:
@@ -40,6 +43,9 @@ func on_detection(other: Node) -> void:
                 ray_length += other.amount
             Powerup.TYPES.SPEED:
                 speed += other.amount
+            _: # Immediately return without stats update when no match was found
+                return
+        update_stats_label()
 
 func _input(event: InputEvent) -> void:
     if current_state == STATE.WAITING:
