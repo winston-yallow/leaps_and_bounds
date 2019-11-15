@@ -1,6 +1,6 @@
 extends Spatial
 
-enum STATE { MOVING, WAITING }
+enum STATE { JUMPING, WAITING }
 
 var mouse_sensitivity := 0.01
 var min_vertical_rotation := -75.0
@@ -13,10 +13,10 @@ var speed := 15.0
 var current_state: int = STATE.WAITING
 var current_ray_target = null
 
-var movement_progress := 0.0
-var movement_from: Transform
-onready var movement_target := DynamicTransform.new(global_transform, self)
-var movement_speed: float
+var jump_progress := 0.0
+var jump_from: Transform
+onready var jump_target := DynamicTransform.new(global_transform, self)
+var jump_speed: float
 
 onready var cam_pivot := $CameraPivot
 onready var cam: Camera = $CameraPivot/ClippedCamera
@@ -58,19 +58,19 @@ func _input(event: InputEvent) -> void:
                 min_vertical_rotation,
                 max_vertical_rotation
             )
-        elif event.is_action_pressed("start_move"):
+        elif event.is_action_pressed("start_jump"):
             if current_ray_target != null:
-                current_state = STATE.MOVING
-                movement_progress = 0.0
-                movement_from = global_transform
-                movement_target = current_ray_target
+                current_state = STATE.JUMPING
+                jump_progress = 0.0
+                jump_from = global_transform
+                jump_target = current_ray_target
                 var distance := global_transform.origin.distance_to(
-                    movement_target.get_global_transform().origin
+                    jump_target.get_global_transform().origin
                 )
-                movement_speed = (1 / distance) * speed
+                jump_speed = (1 / distance) * speed
                 target_preview.visible = false
             else:
-                print("No movement target found")
+                print("No jump target found")
 
 func _physics_process(delta: float) -> void:
     
@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
         var from := cam.global_transform.origin + (direction * clip_offset)
         var to := from + (direction * ray_length)
         var result := space_state.intersect_ray(from, to)
-        if result and result.collider != movement_target.anchor:
+        if result and result.collider != jump_target.anchor:
             current_ray_target = DynamicTransform.new(
                 Transform(
                     global_transform.basis,
@@ -98,17 +98,17 @@ func _physics_process(delta: float) -> void:
             current_ray_target = null
             target_preview.visible = false
         
-        global_transform.origin = movement_target.get_global_transform().origin
+        global_transform.origin = jump_target.get_global_transform().origin
     
-    elif current_state == STATE.MOVING:
+    elif current_state == STATE.JUMPING:
         
-        movement_progress = min(
-            movement_progress + (delta * movement_speed), 1.0
+        jump_progress = min(
+            jump_progress + (delta * jump_speed), 1.0
         )
-        var target := movement_target.get_global_transform()
-        global_transform = movement_from.interpolate_with(
+        var target := jump_target.get_global_transform()
+        global_transform = jump_from.interpolate_with(
             target,
-            movement_progress
+            jump_progress
         )
-        if movement_progress >= 1.0:
+        if jump_progress >= 1.0:
             current_state = STATE.WAITING
