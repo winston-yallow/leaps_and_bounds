@@ -14,8 +14,11 @@ var current_state: int = STATE.WAITING
 var current_ray_target = null
 
 var jump_progress := 0.0
-var jump_from: Transform
-onready var jump_target := DynamicTransform.new(global_transform, self)
+var jump_from: DynamicTransform
+onready var jump_target := DynamicTransform.new(
+    global_transform,
+    get_tree().current_scene
+)
 var jump_speed: float
 
 onready var cam_pivot := $CameraPivot
@@ -62,7 +65,10 @@ func _input(event: InputEvent) -> void:
             if current_ray_target != null:
                 current_state = STATE.JUMPING
                 jump_progress = 0.0
-                jump_from = global_transform
+                jump_from = DynamicTransform.new(
+                    global_transform,
+                    jump_target.anchor
+                )
                 jump_target = current_ray_target
                 var distance := global_transform.origin.distance_to(
                     jump_target.get_global_transform().origin
@@ -105,9 +111,8 @@ func _physics_process(delta: float) -> void:
         jump_progress = min(
             jump_progress + (delta * jump_speed), 1.0
         )
-        var target := jump_target.get_global_transform()
-        global_transform = jump_from.interpolate_with(
-            target,
+        global_transform = jump_from.get_global_transform().interpolate_with(
+            jump_target.get_global_transform(),
             jump_progress
         )
         if jump_progress >= 1.0:
