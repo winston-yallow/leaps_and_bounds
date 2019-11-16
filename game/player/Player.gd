@@ -67,7 +67,7 @@ func on_detection(other: Node) -> void:
 func _input(event: InputEvent) -> void:
     if current_state == STATE.WAITING:
         if event is InputEventMouseMotion:
-            rotate_y(-event.relative.x * mouse_sensitivity)
+            rotate_object_local(Vector3.UP, -event.relative.x * mouse_sensitivity)
             cam_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
             cam_pivot.rotation_degrees.x = clamp(
                 cam_pivot.rotation_degrees.x,
@@ -104,9 +104,12 @@ func _physics_process(delta: float) -> void:
         var to := from + (direction * ray_length)
         var result := space_state.intersect_ray(from, to)
         if result and result.collider != jump_target.anchor:
+            var up := result.normal as Vector3
+            var right := -up.cross(direction).normalized()
+            var back := -up.cross(right).normalized()
             current_ray_target = DynamicTransform.new(
                 Transform(
-                    global_transform.basis,
+                    Basis(right, up, back),
                     result.position + (result.normal * distance_from_objects)
                 ),
                 result.collider
