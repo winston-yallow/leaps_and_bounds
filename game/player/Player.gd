@@ -48,7 +48,7 @@ func update_stats_label() -> void:
         'speed': speed,
         'ray_length': ray_length,
         'points': points,
-        'time': round((OS.get_ticks_msec() - starting_time) / 1000)
+        'time': round((OS.get_ticks_msec() - starting_time) / 1000.0)
     })
 
 func on_detection(other: Node) -> void:
