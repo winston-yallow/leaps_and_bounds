@@ -23,6 +23,12 @@ onready var jump_target := DynamicTransform.new(
 )
 var jump_speed: float
 
+var stats_template := """
+speed: {speed}
+jump_distance: {ray_length}
+points: {points}
+"""
+
 onready var cam_pivot := $CameraPivot
 onready var cam: Camera = $CameraPivot/ClippedCamera
 
@@ -36,9 +42,10 @@ func _ready() -> void:
     detector.connect("area_entered", self, "on_detection")
 
 func update_stats_label() -> void:
-    stats.text = 'speed: {speed}\njump_distance: {ray_length}'.format({
+    stats.text = stats_template.format({
         'speed': speed,
-        'ray_length': ray_length
+        'ray_length': ray_length,
+        'points': points
     })
 
 func on_detection(other: Node) -> void:
