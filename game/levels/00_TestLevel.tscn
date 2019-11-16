@@ -2,26 +2,21 @@
 
 [ext_resource path="res://floating_objects/FloatingCube.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://powerups/Powerup.gd" type="Script" id=3]
-
-[sub_resource type="SphereShape" id=1]
-radius = 2.0
+[ext_resource path="res://powerups/IncreaseSpeed.tscn" type="PackedScene" id=3]
+[ext_resource path="res://powerups/IncreaseDistance.tscn" type="PackedScene" id=4]
 
 [node name="00_TestLevel" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
-[node name="Powerup" type="Area" parent="."]
-script = ExtResource( 3 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Powerup"]
-shape = SubResource( 1 )
-
 [node name="Cubes" type="Spatial" parent="."]
 
 [node name="FloatingCube7" parent="Cubes" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -2 )
+
+[node name="IncreaseSpeed" parent="Cubes/FloatingCube7" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0 )
 
 [node name="FloatingCube6" parent="Cubes" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2 )
@@ -74,6 +69,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 2 )
 [node name="FloatingCube22" parent="Cubes" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4, 2 )
 
+[node name="IncreaseSpeed" parent="Cubes/FloatingCube22" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
 [node name="FloatingCube23" parent="Cubes" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, -2, -2 )
 
@@ -115,6 +113,9 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, -2, 
 
 [node name="FloatingCube36" parent="Cubes" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="IncreaseDistance" parent="Cubes/FloatingCube36" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.55671e-08, 1.5, 0 )
 
 [node name="FloatingCube37" parent="Cubes" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4, 2, 0 )
