@@ -23,11 +23,13 @@ onready var jump_target := DynamicTransform.new(
 )
 var jump_speed: float
 
-var stats_template := """
-speed: {speed}
+var stats_template := """speed: {speed}
 jump_distance: {ray_length}
 points: {points}
+time: {time}
 """
+
+onready var starting_time := OS.get_ticks_msec()
 
 onready var cam_pivot := $CameraPivot
 onready var cam: Camera = $CameraPivot/ClippedCamera
@@ -45,7 +47,8 @@ func update_stats_label() -> void:
     stats.text = stats_template.format({
         'speed': speed,
         'ray_length': ray_length,
-        'points': points
+        'points': points,
+        'time': round((OS.get_ticks_msec() - starting_time) / 1000)
     })
 
 func on_detection(other: Node) -> void:
@@ -60,7 +63,6 @@ func on_detection(other: Node) -> void:
             _: # Immediately return without stats update when no match was found
                 return
         other.consume()
-        update_stats_label()
 
 func _input(event: InputEvent) -> void:
     if current_state == STATE.WAITING:
@@ -128,3 +130,5 @@ func _physics_process(delta: float) -> void:
         )
         if jump_progress >= 1.0:
             current_state = STATE.WAITING
+    
+    update_stats_label()
