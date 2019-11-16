@@ -10,6 +10,8 @@ var distance_from_objects := 0.5
 
 var speed := 10.0
 
+var points := 0
+
 var current_state: int = STATE.WAITING
 var current_ray_target = null
 
@@ -46,6 +48,8 @@ func on_detection(other: Node) -> void:
                 ray_length += other.amount
             Powerup.TYPES.SPEED:
                 speed += other.amount
+            Powerup.TYPES.POINTS:
+                points += other.amount
             _: # Immediately return without stats update when no match was found
                 return
         other.consume()
