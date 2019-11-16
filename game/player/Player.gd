@@ -76,18 +76,21 @@ func _input(event: InputEvent) -> void:
             )
         elif event.is_action_pressed("start_jump"):
             if current_ray_target != null:
-                current_state = STATE.JUMPING
-                jump_progress = 0.0
-                jump_from = DynamicTransform.new(
-                    global_transform,
-                    jump_target.anchor
-                )
-                jump_target = current_ray_target
                 var distance := global_transform.origin.distance_to(
-                    jump_target.get_global_transform().origin
+                    current_ray_target.get_global_transform().origin
                 )
-                jump_speed = (1 / distance) * speed
-                target_preview.visible = false
+                if distance > 0:
+                    current_state = STATE.JUMPING
+                    jump_progress = 0.0
+                    jump_from = DynamicTransform.new(
+                        global_transform,
+                        jump_target.anchor
+                    )
+                    jump_target = current_ray_target
+                    jump_speed = (1 / distance) * speed
+                    target_preview.visible = false
+                else:
+                    print("Jump target is current position")
             else:
                 print("No jump target found")
 
