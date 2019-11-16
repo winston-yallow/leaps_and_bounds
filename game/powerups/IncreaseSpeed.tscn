@@ -10,8 +10,7 @@ radius = 0.5
 height = 1.0
 
 [sub_resource type="SpatialMaterial" id=3]
-flags_transparent = true
-albedo_color = Color( 0.12549, 1, 0, 0.392157 )
+albedo_color = Color( 0.12549, 1, 0, 1 )
 
 [node name="IncreaseSpeed" type="Area"]
 script = ExtResource( 1 )
