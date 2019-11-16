@@ -8,7 +8,7 @@ var max_vertical_rotation := +75.0
 var ray_length := 100.0
 var distance_from_objects := 0.5
 
-var speed := 15.0
+var speed := 10.0
 
 var current_state: int = STATE.WAITING
 var current_ray_target = null
