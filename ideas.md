@@ -11,6 +11,7 @@
 - Range of rope can be extended with collectable items
 - Maybe the objects are all cubes?
 - Player orientation could depend on the plane they are standing on
+- Turrets with range bubble
 
 # Things to implement
 
