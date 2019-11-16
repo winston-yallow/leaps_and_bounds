@@ -4,7 +4,7 @@ enum STATE { JUMPING, WAITING }
 
 var mouse_sensitivity := 0.01
 var min_vertical_rotation := -75.0
-var max_vertical_rotation := +75.0
+var max_vertical_rotation := +85.0
 var ray_length := 100.0
 var distance_from_objects := 0.5
 
