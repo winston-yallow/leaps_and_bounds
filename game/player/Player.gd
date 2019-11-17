@@ -64,35 +64,35 @@ func on_detection(other: Node) -> void:
                 return
         other.consume()
 
-func _input(event: InputEvent) -> void:
-    if current_state == STATE.WAITING:
-        if event is InputEventMouseMotion:
-            rotate_object_local(Vector3.UP, -event.relative.x * mouse_sensitivity)
-            cam_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
-            cam_pivot.rotation_degrees.x = clamp(
-                cam_pivot.rotation_degrees.x,
-                min_vertical_rotation,
-                max_vertical_rotation
+func _input(ev: InputEvent) -> void:
+    if ev is InputEventMouseMotion:
+        if current_state == STATE.WAITING:
+            rotate_object_local(Vector3.UP, -ev.relative.x * mouse_sensitivity)
+        cam_pivot.rotate_x(-ev.relative.y * mouse_sensitivity)
+        cam_pivot.rotation_degrees.x = clamp(
+            cam_pivot.rotation_degrees.x,
+            min_vertical_rotation,
+            max_vertical_rotation
+        )
+    elif current_state == STATE.WAITING and ev.is_action_pressed("start_jump"):
+        if current_ray_target != null:
+            var distance := global_transform.origin.distance_to(
+                current_ray_target.get_global_transform().origin
             )
-        elif event.is_action_pressed("start_jump"):
-            if current_ray_target != null:
-                var distance := global_transform.origin.distance_to(
-                    current_ray_target.get_global_transform().origin
+            if distance > 0:
+                current_state = STATE.JUMPING
+                jump_progress = 0.0
+                jump_from = DynamicTransform.new(
+                    global_transform,
+                    jump_target.anchor
                 )
-                if distance > 0:
-                    current_state = STATE.JUMPING
-                    jump_progress = 0.0
-                    jump_from = DynamicTransform.new(
-                        global_transform,
-                        jump_target.anchor
-                    )
-                    jump_target = current_ray_target
-                    jump_speed = (1 / distance) * speed
-                    target_preview.visible = false
-                else:
-                    print("Jump target is current position")
+                jump_target = current_ray_target
+                jump_speed = (1 / distance) * speed
+                target_preview.visible = false
             else:
-                print("No jump target found")
+                print("Jump target is current position")
+        else:
+            print("No jump target found")
 
 func _physics_process(delta: float) -> void:
     
